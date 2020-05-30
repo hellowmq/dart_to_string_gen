@@ -1,0 +1,18 @@
+name: example
+description: example for to_string.
+version: 0.0.1+1
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
+dependencies:
+  to_string:
+    path: ../to_string/
+
+
+dev_dependencies:
+  build_runner: 1.10.0
+  test: ^1.0.0
+  to_string_gen:
+    path: ../to_string_gen/
+  build_resolvers: ^1.1.0

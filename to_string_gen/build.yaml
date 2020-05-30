@@ -1,0 +1,30 @@
+targets:
+  $default:
+    builders:
+      to_string_gen|to_string:
+        enabled: true
+
+builders:
+  to_string:
+    import: "package:to_string_gen/builder.dart"
+    builder_factories: [
+      "toStringLibraryBuildFactory",
+    ]
+    build_extensions: {".dart": [".g.part"]}
+    auto_apply: dependents
+    build_to: source
+    target: ":to_string_gen"
+
+
+
+#  to_string:
+#    target: ":to_string_gen"
+#    import: "package:to_string_gen/builder.dart"
+#    builder_factories: [
+##      "toStringLibraryBuildFactory",
+#            "toStringPartBuildFactory",
+#    ]
+#    build_extensions: {".dart": ["td.dart"]}
+#    auto_apply: dependents
+#    build_to: source
+#    applies_builders: ["source_gen|combining_builder"]
