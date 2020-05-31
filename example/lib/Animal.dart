@@ -7,7 +7,7 @@ export 'Mouse.dart';
 
 part 'Animal.g.dart';
 
-@ToString('Peter')
+@ToString()
 class Animal{
   int foot;
   int eye;

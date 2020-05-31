@@ -6,7 +6,6 @@
 
 part of 'Animal.dart';
 
-// Hey! Annotation found! class Animal";
 /**
   *  element= ClassElementImpl class Animal
   *  annotation= _DartObjectConstant Instance of '_DartObjectConstant'

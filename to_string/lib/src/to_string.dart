@@ -1,14 +1,16 @@
 class ToString {
-  final String name;
+  final String methodName;
 
   final String todoUrl;
 
-  const ToString(this.name, {this.todoUrl}) : assert(name != null);
+  const ToString({this.methodName = "_ToString", this.todoUrl});
 
   @override
   String toString() {
-    return 'ToString{name: $name, todoUrl: $todoUrl}';
+    return 'ToString{name: $methodName, todoUrl: $todoUrl}';
   }
+
+  const ToString.DEFAULT({this.methodName = "_ToString", this.todoUrl = ""});
 }
 
 

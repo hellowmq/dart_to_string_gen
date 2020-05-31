@@ -3,12 +3,12 @@ import 'package:to_string/to_string.dart';
 
 part 'Cat.g.dart';
 
-@ToString('Tom')
+@ToString(methodName: '_catNamedTom')
 class Cat extends Animal {
   void catchMouse() {}
 
   Cat() : super(4, 2, true) {}
 
   @override
-  String toString() => _ToString();
+  String toString() => _catNamedTom();
 }

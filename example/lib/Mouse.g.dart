@@ -6,7 +6,6 @@
 
 part of 'Mouse.dart';
 
-// Hey! Annotation found! class Mouse extends Animal";
 /**
   *  element= ClassElementImpl class Mouse extends Animal
   *  annotation= _DartObjectConstant Instance of '_DartObjectConstant'
@@ -14,5 +13,5 @@ part of 'Mouse.dart';
   */
 
 extension on Mouse {
-  String _ToString() => 'Mouse{}';
+  String _mouseNamedJerry() => 'Mouse{}';
 }

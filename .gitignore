@@ -1,0 +1,5 @@
+/.idea/
+/*/.packages
+/*/.dart_tool
+/to_string/.dart_tool/
+/to_string_gen/.dart_tool/

@@ -5,7 +5,7 @@ import 'Animal.dart';
 part 'Mouse.g.dart';
 
 
-@ToString('Jerry',todoUrl: 'www.wenmq.cn')
+@ToString(methodName: '_mouseNamedJerry',todoUrl: 'www.wenmq.cn')
 class Mouse extends Animal{
 
   void steal(){}
@@ -13,5 +13,5 @@ class Mouse extends Animal{
 
   Mouse() : super(4, 2, true) {}
   @override
-  String toString() => _ToString();
+  String toString() => _mouseNamedJerry();
 }
