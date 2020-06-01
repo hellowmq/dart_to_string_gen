@@ -55,3 +55,8 @@ Feel free to dive in! [Open an issue](https://github.com/hellowmq/dart_to_string
 ## License
 
 [MIT](LICENSE) © hellowmq
+
+## Todo
+
+- hide some field in toString output.
+- 
