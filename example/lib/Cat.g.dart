@@ -6,12 +6,8 @@
 
 part of 'Cat.dart';
 
-/**
-  *  element= ClassElementImpl class Cat extends Animal
-  *  annotation= _DartObjectConstant Instance of '_DartObjectConstant'
-  *  buildStep= BuildStepImpl Instance of 'BuildStepImpl'
-  */
+// Annotation ToString for Class Cat
 
 extension on Cat {
-  String _catNamedTom() => 'Cat{}';
+  String _catNamedTom() => 'Cat:{}';
 }
