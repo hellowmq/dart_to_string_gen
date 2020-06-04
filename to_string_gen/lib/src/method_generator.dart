@@ -13,7 +13,7 @@ String generateToStringPartFile(final Element element,
     
     ${generateToStringDoc(element, annotation)}
     
-    ${generateToStringMethod(element, annotation)}
+    ${generateToStringExtensionMethod(element, annotation)}
       ''';
 }
 
@@ -25,13 +25,16 @@ String generateToStringDoc(Element element, ConstantReader annotation) {
   return '// Annotation ${ToString} for ${element.kind} ${element.name}';
 }
 
-String generateToStringMethod(Element element, ConstantReader annotation) {
+///
+/// Todo: extension was introduced in Dart 2.7.
+///
+
+String generateToStringExtensionMethod(Element element, ConstantReader annotation) {
   String className = element.name;
   ToString config = buildToStringFromAnnotation(annotation);
   var fields = ((element as ClassElement).fields);
   var subFields = _getFilteredField(fields, annotation);
   return """
-  /// Todo: extension was introduced in Dart 2.7. 
   extension on ${className} {
    String ${config.methodName}() => 
    '${className}:{${_toStringNorm(subFields)}}';
