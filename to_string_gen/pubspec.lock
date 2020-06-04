@@ -466,7 +466,7 @@ packages:
   to_string:
     dependency: "direct main"
     description:
-      path: "../to_string"
+      path: "..\\to_string"
       relative: true
     source: path
     version: "0.0.1"

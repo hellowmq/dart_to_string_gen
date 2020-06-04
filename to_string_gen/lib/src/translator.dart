@@ -5,7 +5,6 @@ import 'package:source_gen/source_gen.dart';
 import 'package:to_string/to_string.dart';
 import 'package:to_string_gen/src/method_generator.dart';
 
-
 class ToStringGenTor extends GeneratorForAnnotation<ToString> {
   @override
   generateForAnnotatedElement(
@@ -14,9 +13,11 @@ class ToStringGenTor extends GeneratorForAnnotation<ToString> {
     return generateToStringPartFile(element, annotation, buildStep);
   }
 
-  bool checkAnnotationType(final TypeChecker typeChecker,final Element element) {
+  bool checkAnnotationType(
+      final TypeChecker typeChecker, final Element element) {
     if (!typeChecker.hasAnnotationOf(element)) {
-      print("ToString should apply to a class but not a ${element.kind} ${element.name}");
+      print(
+          "ToString should apply to a class but not a ${element.kind} ${element.name}");
       return false;
     }
     print('Annotation ToString found in $element;');

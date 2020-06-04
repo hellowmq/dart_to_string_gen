@@ -3,7 +3,7 @@ description: GEN for to_string
 version: 0.0.1
 
 environment:
-  sdk: ">=2.0.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   build: '>=0.12.0 < 2.0.0'

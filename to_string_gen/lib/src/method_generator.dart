@@ -4,6 +4,8 @@ import 'package:source_gen/source_gen.dart';
 
 import 'package:to_string/to_string.dart';
 
+import 'build_config.dart';
+
 String generateToStringPartFile(final Element element,
     final ConstantReader annotation, final BuildStep buildStep) {
   return '''
@@ -20,24 +22,25 @@ String generateRef(Element element, ConstantReader annotation) {
 }
 
 String generateToStringDoc(Element element, ConstantReader annotation) {
-  
   return '// Annotation ${ToString} for ${element.kind} ${element.name}';
 }
 
 String generateToStringMethod(Element element, ConstantReader annotation) {
   String className = element.name;
-  String methodName = annotation.read("methodName").stringValue ?? "_ToString";
+  ToString config = buildToStringFromAnnotation(annotation);
   var fields = ((element as ClassElement).fields);
   var subFields = _getFilteredField(fields, annotation);
   return """
+  /// Todo: extension was introduced in Dart 2.7. 
   extension on ${className} {
-   String ${methodName}() => 
+   String ${config.methodName}() => 
    '${className}:{${_toStringNorm(subFields)}}';
    }
    """;
 }
 
-List<FieldElement> _getFilteredField(List<FieldElement> fields, ConstantReader annotation) {
+List<FieldElement> _getFilteredField(
+    List<FieldElement> fields, ConstantReader annotation) {
   return fields.where((element) => true).toList();
 }
 
