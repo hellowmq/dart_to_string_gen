@@ -9,12 +9,16 @@ class ToString {
 
   final List<String> hide;
 
+//  This will only work in Dart 2.7+
+  final bool useExtensionMethod;
+
   const ToString({
     this.methodName = "_ToString",
     this.privateInvisible = true,
     this.todoUrl = "",
     this.show,
     this.hide,
+    this.useExtensionMethod = false,
   });
 
   @override
@@ -28,5 +32,6 @@ class ToString {
     this.todoUrl = "",
     this.show,
     this.hide,
+    this.useExtensionMethod = false,
   });
 }

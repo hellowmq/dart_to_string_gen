@@ -13,5 +13,5 @@ class Mouse extends Animal{
 
   Mouse() : super(4, 2, true) {}
   @override
-  String toString() => _mouseNamedJerry();
+  String toString() => _mouseNamedJerry(this);
 }

@@ -6,8 +6,6 @@
 
 part of 'Mouse.dart';
 
-// Annotation ToString for Class Mouse
+// Annotation ToString for CLASS Mouse
 
-extension on Mouse {
-  String _mouseNamedJerry() => 'Mouse:{}';
-}
+String _mouseNamedJerry(Mouse clazz) => 'Mouse:{}';

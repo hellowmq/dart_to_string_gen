@@ -6,8 +6,6 @@
 
 part of 'Cat.dart';
 
-// Annotation ToString for Class Cat
+// Annotation ToString for CLASS Cat
 
-extension on Cat {
-  String _catNamedTom() => 'Cat:{}';
-}
+String _catNamedTom(Cat clazz) => 'Cat:{}';

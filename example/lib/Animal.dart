@@ -15,5 +15,5 @@ class Animal {
   Animal(this.foot, this.eye, this.hasTail);
 
   @override
-  String toString() => this._ToString();
+  String toString() => _ToString(this);
 }

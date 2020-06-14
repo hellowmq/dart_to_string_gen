@@ -13,6 +13,8 @@ String generateToStringPartFile(final Element element,
     
     ${generateToStringDoc(element, annotation)}
     
+    ${generateToStringMethod(element, annotation)}
+    
     ${generateToStringExtensionMethod(element, annotation)}
       ''';
 }
@@ -25,19 +27,33 @@ String generateToStringDoc(Element element, ConstantReader annotation) {
   return '// Annotation ${ToString} for ${element.kind} ${element.name}';
 }
 
-///
-/// Todo: extension was introduced in Dart 2.7.
-///
-
-String generateToStringExtensionMethod(Element element, ConstantReader annotation) {
+String generateToStringMethod(Element element, ConstantReader annotation) {
   String className = element.name;
   ToString config = buildToStringFromAnnotation(annotation);
   var fields = ((element as ClassElement).fields);
   var subFields = _getFilteredField(fields, annotation);
   return """
+  String ${config.methodName}(${className} clazz) => 
+   '${className}:{${_toStringNorm(subFields, "clazz")}}';
+  
+  """;
+}
+
+///
+/// Todo: extension was introduced in Dart 2.7.
+///
+
+String generateToStringExtensionMethod(
+    Element element, ConstantReader annotation) {
+  String className = element.name;
+  ToString config = buildToStringFromAnnotation(annotation);
+  var fields = ((element as ClassElement).fields);
+  var subFields = _getFilteredField(fields, annotation);
+  if (!config.useExtensionMethod) return "";
+  return """
   extension on ${className} {
    String ${config.methodName}() => 
-   '${className}:{${_toStringNorm(subFields)}}';
+   '${className}:{${_toStringFieldNorm(subFields)}}';
    }
    """;
 }
@@ -47,7 +63,15 @@ List<FieldElement> _getFilteredField(
   return fields.where((element) => true).toList();
 }
 
-String _toStringNorm(Iterable field) {
+String _toStringNorm(Iterable field,String clazz) {
+  return field
+      .map((classElement) => "${classElement.name}=\$\{clazz.${classElement.name}\}")
+      .join(", ");
+}
+
+
+
+String _toStringFieldNorm(Iterable field) {
   return field
       .map((classElement) => "${classElement.name}=\$${classElement.name}")
       .join(", ");

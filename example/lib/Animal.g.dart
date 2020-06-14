@@ -6,8 +6,7 @@
 
 part of 'Animal.dart';
 
-// Annotation ToString for Class Animal
+// Annotation ToString for CLASS Animal
 
-extension on Animal {
-  String _ToString() => 'Animal:{foot=$foot, eye=$eye, hasTail=$hasTail}';
-}
+String _ToString(Animal clazz) =>
+    'Animal:{foot=${clazz.foot}, eye=${clazz.eye}, hasTail=${clazz.hasTail}}';

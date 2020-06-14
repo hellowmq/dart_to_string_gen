@@ -10,5 +10,5 @@ class Cat extends Animal {
   Cat() : super(4, 2, true) {}
 
   @override
-  String toString() => _catNamedTom();
+  String toString() => _catNamedTom(this);
 }
