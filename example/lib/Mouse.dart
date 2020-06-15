@@ -10,6 +10,8 @@ class Mouse extends Animal{
 
   void steal(){}
 
+  String _food;
+
 
   Mouse() : super(4, 2, true) {}
   @override

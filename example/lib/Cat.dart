@@ -9,6 +9,10 @@ class Cat extends Animal {
 
   Cat() : super(4, 2, true) {}
 
+  String _food;
+
+  String claw;
+
   @override
   String toString() => _catNamedTom(this);
 }

@@ -16,8 +16,8 @@ class ToString {
     this.methodName = "_ToString",
     this.privateInvisible = true,
     this.todoUrl = "",
-    this.show,
-    this.hide,
+    this.show = const <String>[],
+    this.hide = const <String>[],
     this.useExtensionMethod = false,
   });
 
@@ -30,8 +30,8 @@ class ToString {
     this.methodName = "_ToString",
     this.privateInvisible = true,
     this.todoUrl = "",
-    this.show,
-    this.hide,
+    this.show = const <String>[],
+    this.hide = const <String>[],
     this.useExtensionMethod = false,
   });
 }

@@ -8,4 +8,4 @@ part of 'Mouse.dart';
 
 // Annotation ToString for CLASS Mouse
 
-String _mouseNamedJerry(Mouse clazz) => 'Mouse:{}';
+String _mouseNamedJerry(Mouse clazz) => 'Mouse:{_food=${clazz._food}}';

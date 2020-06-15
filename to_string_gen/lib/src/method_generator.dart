@@ -4,18 +4,18 @@ import 'package:source_gen/source_gen.dart';
 
 import 'package:to_string/to_string.dart';
 
-import 'build_config.dart';
-
 String generateToStringPartFile(final Element element,
-    final ConstantReader annotation, final BuildStep buildStep) {
+    final ConstantReader annotation,
+    final BuildStep buildStep,
+    final ToString config) {
   return '''
     ${generateRef(element, annotation)}
     
     ${generateToStringDoc(element, annotation)}
     
-    ${generateToStringMethod(element, annotation)}
+    ${generateToStringMethod(element, annotation, config)}
     
-    ${generateToStringExtensionMethod(element, annotation)}
+    ${generateToStringExtensionMethod(element, annotation, config)}
       ''';
 }
 
@@ -27,15 +27,16 @@ String generateToStringDoc(Element element, ConstantReader annotation) {
   return '// Annotation ${ToString} for ${element.kind} ${element.name}';
 }
 
-String generateToStringMethod(Element element, ConstantReader annotation) {
+String generateToStringMethod(Element element, ConstantReader annotation,
+    ToString config) {
+  if (config.useExtensionMethod) return "";
   String className = element.name;
-  ToString config = buildToStringFromAnnotation(annotation);
-  var fields = ((element as ClassElement).fields);
-  var subFields = _getFilteredField(fields, annotation);
+  List<FieldElement> fields = ((element as ClassElement).fields);
+  List<FieldElement> subFields = _getFilteredField(fields, annotation, config);
+
   return """
   String ${config.methodName}(${className} clazz) => 
    '${className}:{${_toStringNorm(subFields, "clazz")}}';
-  
   """;
 }
 
@@ -43,13 +44,12 @@ String generateToStringMethod(Element element, ConstantReader annotation) {
 /// Todo: extension was introduced in Dart 2.7.
 ///
 
-String generateToStringExtensionMethod(
-    Element element, ConstantReader annotation) {
-  String className = element.name;
-  ToString config = buildToStringFromAnnotation(annotation);
-  var fields = ((element as ClassElement).fields);
-  var subFields = _getFilteredField(fields, annotation);
+String generateToStringExtensionMethod(Element element,
+    ConstantReader annotation, ToString config) {
   if (!config.useExtensionMethod) return "";
+  String className = element.name;
+  var fields = ((element as ClassElement).fields);
+  var subFields = _getFilteredField(fields, annotation, config);
   return """
   extension on ${className} {
    String ${config.methodName}() => 
@@ -58,18 +58,21 @@ String generateToStringExtensionMethod(
    """;
 }
 
-List<FieldElement> _getFilteredField(
-    List<FieldElement> fields, ConstantReader annotation) {
-  return fields.where((element) => true).toList();
+List<FieldElement> _getFilteredField(List<FieldElement> fields,
+    ConstantReader annotation,
+    ToString config) {
+  return fields.where((element) {
+    if (!config.privateInvisible && element.name.startsWith('_'))
+      return false;
+    return true;
+  }).toList();
 }
 
-String _toStringNorm(Iterable field,String clazz) {
-  return field
-      .map((classElement) => "${classElement.name}=\$\{clazz.${classElement.name}\}")
+String _toStringNorm(Iterable field, String clazz) {
+  return field.map((classElement) =>
+  "${classElement.name}=\$\{clazz.${classElement.name}\}")
       .join(", ");
 }
-
-
 
 String _toStringFieldNorm(Iterable field) {
   return field
