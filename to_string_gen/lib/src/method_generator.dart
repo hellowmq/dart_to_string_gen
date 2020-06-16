@@ -4,7 +4,8 @@ import 'package:source_gen/source_gen.dart';
 
 import 'package:to_string/to_string.dart';
 
-String generateToStringPartFile(final Element element,
+String generateToStringPartFile(
+    final Element element,
     final ConstantReader annotation,
     final BuildStep buildStep,
     final ToString config) {
@@ -27,8 +28,8 @@ String generateToStringDoc(Element element, ConstantReader annotation) {
   return '// Annotation ${ToString} for ${element.kind} ${element.name}';
 }
 
-String generateToStringMethod(Element element, ConstantReader annotation,
-    ToString config) {
+String generateToStringMethod(
+    Element element, ConstantReader annotation, ToString config) {
   if (config.useExtensionMethod) return "";
   String className = element.name;
   List<FieldElement> fields = ((element as ClassElement).fields);
@@ -44,8 +45,8 @@ String generateToStringMethod(Element element, ConstantReader annotation,
 /// Todo: extension was introduced in Dart 2.7.
 ///
 
-String generateToStringExtensionMethod(Element element,
-    ConstantReader annotation, ToString config) {
+String generateToStringExtensionMethod(
+    Element element, ConstantReader annotation, ToString config) {
   if (!config.useExtensionMethod) return "";
   String className = element.name;
   var fields = ((element as ClassElement).fields);
@@ -58,19 +59,20 @@ String generateToStringExtensionMethod(Element element,
    """;
 }
 
-List<FieldElement> _getFilteredField(List<FieldElement> fields,
-    ConstantReader annotation,
-    ToString config) {
+List<FieldElement> _getFilteredField(
+    List<FieldElement> fields, ConstantReader annotation, ToString config) {
   return fields.where((element) {
-    if (!config.privateInvisible && element.name.startsWith('_'))
-      return false;
+    if (config.hide.contains(element.name)) return false;
+    if (config.show.contains(element.name)) return true;
+    if (!config.privateInvisible && element.name.startsWith('_')) return false;
     return true;
   }).toList();
 }
 
 String _toStringNorm(Iterable field, String clazz) {
-  return field.map((classElement) =>
-  "${classElement.name}=\$\{clazz.${classElement.name}\}")
+  return field
+      .map((classElement) =>
+          "${classElement.name}=\$\{clazz.${classElement.name}\}")
       .join(", ");
 }
 

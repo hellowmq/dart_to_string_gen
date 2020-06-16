@@ -5,11 +5,21 @@ class ToString {
 
   final bool privateInvisible;
 
+  ///
+  /// List [show] will show the field in List.
+  ///
+  /// private field in [show] will be shown when [privateInvisible] is true
+  ///
   final List<String> show;
 
+  ///
+  /// List [hide] will ignore the fields included.
+  ///
+  /// field both in [show] & [hide] will be hidden.
+  ///
   final List<String> hide;
 
-//  This will only work in Dart 2.7+
+///  This will only work in Dart 2.7+
   final bool useExtensionMethod;
 
   const ToString({

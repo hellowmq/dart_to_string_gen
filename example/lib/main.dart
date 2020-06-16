@@ -1,7 +1,6 @@
 import 'package:example/Animal.dart';
-
-import 'Cat.dart';
-import 'Mouse.dart';
+import 'package:example/Cat.dart';
+import 'package:example/Mouse.dart';
 
 void main() {
   Animal animal = Animal(4, 2, true);
