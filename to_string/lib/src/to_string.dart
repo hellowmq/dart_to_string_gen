@@ -1,8 +1,15 @@
 class ToString {
+
+  ///
+  /// This define the toString method name.
+  ///
   final String methodName;
 
   final String todoUrl;
 
+  ///
+  /// This define the toString method name.
+  ///
   final bool privateInvisible;
 
   ///
@@ -19,7 +26,10 @@ class ToString {
   ///
   final List<String> hide;
 
-///  This will only work in Dart 2.7+
+  ///
+  /// use extension method instead of value-pass method
+  /// This feature will only work in Dart 2.7+
+  ///
   final bool useExtensionMethod;
 
   const ToString({
