@@ -1,6 +1,6 @@
 name: to_string
 description: Collect All field And genarate toString();
-version: 0.0.1
+version: 0.1.0
 homepage: http://www.wenmq.cn
 
 
