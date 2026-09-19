@@ -1,8 +1,16 @@
 # dart_to_string_gen
 
- This is a practice of Dart source_gen. Use extension method to generate toString method.
+> Historical Dart 2 `source_gen` experiment, preserved as a learning example.
 
-## How To Use
+The repository explores generating a private `_ToString()` extension for annotated Dart classes, then delegating the class's `toString()` implementation to the generated code.
+
+## Repository layout
+
+- `to_string`: the `@ToString()` annotation.
+- `to_string_gen`: the generator and builder configuration.
+- `example`: sample annotated classes, generated `.g.dart` files, and tests.
+
+## Historical usage
 
 1. Add @ToString() before your Class definition.
 ```dart
@@ -17,30 +25,17 @@ class Animal{}
   String toString() => this._ToString();
 ```
 
-3. Execute build_runner on the command line
+3. Execute the Dart 2-era `build_runner` workflow from `example/`:
 
-    - In a Dart project
-     
-        run this command on Command Line
-    
-        ```
-        pub get 
-        pub run build_runner build
-        ```
+```bash
+cd example
+pub get
+pub run build_runner build
+```
 
-    - In a Flutter project
+## Status
 
-        run this command on Command Line
-    
-        ```
-        flutter pub get 
-        flutter pub run build_runner build
-        ```
-## More 
-
-💻 still developing...
-
-Feel free to dive in! [Open an issue](https://github.com/hellowmq/dart_to_string_gen/issues/new) or submit PRs.
+The packages constrain the Dart SDK to `<3.0.0` and depend on pre-null-safety versions of `source_gen`, `build_runner`, and `analyzer`. The repository has not been migrated or verified with current Dart/Flutter toolchains and is not presented as an actively maintained package. Use the checked-in generated examples to understand the experiment; expect migration work before using it in a modern project.
 
 ## Link
 
@@ -48,15 +43,10 @@ Feel free to dive in! [Open an issue](https://github.com/hellowmq/dart_to_string
 
 [dart-lang/source_gen](https://github.com/dart-lang/source_gen)
 
-## Maintainers
-
-[@hellowmq](https://github.com/hellowmq).
-
 ## License
 
-[MIT](LICENSE) © hellowmq
+[MIT](LICENSE) © hellowmq. Dependency licenses remain with their respective projects.
 
 ## Todo
 
 - hide some field in toString output.
-- 
